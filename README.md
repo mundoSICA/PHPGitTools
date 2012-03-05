@@ -17,8 +17,7 @@ Por el momento estamos trabajando, tenemos algunas dudas respecto al como debera
 	|       `-- Service.php <-- Nucleo Libreria de Servicios
 	`-- README.md
 
-##Documentacion pendiente.
-
+##OJO: Documentación pendiente.
 
 ##Instalación.
 
@@ -35,12 +34,12 @@ Por el momento estamos trabajando, tenemos algunas dudas respecto al como debera
 
 Ejemplo de sessiones con `smtp` desde el servidor de **gmail**
 
-###Ejemplo3. Autogenerador de documentacion.
+###Ejemplo3. Autogenerador de documentación.
 
 Generando automaticamente la documentación de un proyecto con git.
 
 
-#Desarrolladores.
+#Documentación para desarrolladores.
 
 ##Creando mis propios ganchos(hooks).
 
