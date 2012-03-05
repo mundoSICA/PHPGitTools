@@ -16,6 +16,9 @@ Por el momento estamos trabajando, tenemos algunas dudas respecto al como debera
 	|       `-- Service.php
 	`-- README.md
 
+##Documentacion pendiente.
+
+
 ##Instalación.
 
 ##Uso.
