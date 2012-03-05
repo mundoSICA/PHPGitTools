@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /*
  * Service
@@ -20,7 +19,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  */
-include_once '../GitPHP.php';
+defined('PHPGIT_RUNNING') or die;
 
 class Service extends GitPHP{
 	

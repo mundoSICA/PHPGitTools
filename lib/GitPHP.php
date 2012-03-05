@@ -20,7 +20,8 @@
  * MA 02110-1301, USA.
  */
  
-#abstract class GitPhp {
+defined('PHPGIT_RUNNING') or die;
+
 class GitPHP {
 	public $files_queue = array();
 	#########
@@ -30,27 +31,12 @@ class GitPHP {
 		{
 			if( strtoupper(substr(PHP_OS, 0, 3)) == 'WIN' ){
 				define('OS','WIN');
-				define('DS','\\');
 			}else{
 				define('OS','UNIX');
 				define('DS','/');
 			}
 		}
-	}
-	/**
-	 * Descripción de la función
-	 *
-	 * @param tipo $parametro1 descripción del párametro 1.
-	 * @return tipo descripcion de lo que regresa
-	 * @access publico/privado
-	 * @link [URL de mayor infor]
-	 */
-	function getConfigParam($selector) {
-		$param = explode("\n",`git config $selector`);
-		if(isset($param[0]))
-			return $param[0];
-		else
-			return false;
+		define('DS',DIRECTORY_SEPARATOR);
 	}
 	/**
 	 * Descripción de la función
@@ -177,12 +163,12 @@ class GitPHP {
 	 * print_r( GitPHP::config('user.name'));
 	 * myUserName
 	 * 
-	 * @param tipo $parametro1 descripción del párametro 1.
-	 * @return tipo descripcion de lo que regresa
-	 * @access publico/privado
+	 * @param string $parametro1 descripción del párametro 1.
+	 * @return mixed string en caso que solo exista un valor, arreglo en caso que existan varios, null en caso de error.
+	 * @access publico
 	 * @link [URL de mayor infor]
 	 */
-	static function config($var_name) {
+	public static function config($var_name) {
 		$variables=array();
 		preg_match_all(
 					'%^'.str_replace('.','\.',$var_name).'.*=.*$%ismU', 
@@ -201,4 +187,3 @@ class GitPHP {
 		return null;
 	}
 }
-

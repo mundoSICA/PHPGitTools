@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /*
  * FilezillaQueque - una extension de GitPHP que nos ayuda en el manejo de la cola de archivos del filezilla.
@@ -20,6 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  */
+ 
+defined('PHPGIT_RUNNING') or die;
  
 class gitEmail extends Service{
 	

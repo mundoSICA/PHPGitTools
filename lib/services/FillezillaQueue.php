@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /*
  * FilezillaQueque - una extension de GitPHP que nos ayuda en el manejo de la cola de archivos del filezilla.
@@ -32,12 +31,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301, USA.
  */
+defined('PHPGIT_RUNNING') or die;
  
 class FillezillaQueue extends Service{
 	public $files_queue = array();
 	public $hash1 = '';
 	public $hash2 = '';
-	protected static $config;
 	
 	/**
 	 * Descripción de la función
@@ -49,12 +48,6 @@ class FillezillaQueue extends Service{
 	 */
 	function __construct() {
 		parent::__construct();
-		if (empty(self::$config))
-		{
-			self::$config['localpath'] = $this->getConfigParam('filezilla.local-path');
-			self::$config['dir-export'] = $this->getConfigParam('filezilla.dir-export');
-			self::$config['remote-path'] = $this->_remotePathFormat($this->getConfigParam('filezilla.remote-path'), true);
-		}
 	}
 	/* public function __get($name) {} */
 	
@@ -74,15 +67,15 @@ class FillezillaQueue extends Service{
 		$files = $this->filesBetweenCommits($hash1, $hash2);
 		
 		foreach($files as $file){
-			if( !preg_match("%^".self::$config['dir-export']."%", $file))
+			if( !preg_match("%^".GitPHP::config('filezilla.dir-export')."%", $file))
 				continue;
-			$file = preg_replace("%^".self::$config['dir-export'].DS."%",'',$file);
-			$file_path = self::$config['localpath'].DS.self::$config['dir-export'].DS.$file;
+			$file = preg_replace("%^".GitPHP::config('filezilla.dir-export').DS."%",'',$file);
+			$file_path = GitPHP::config('filezilla.localpath').DS.GitPHP::config('filezilla.dir-export').DS.$file;
 			
 			$file_data=array(
 				'LocalFile' => $file_path,
                 'RemoteFile' => preg_replace('%(.*)/([^/]*)%i','\2',$file), #$file,
-                'RemotePath' => self::$config['remote-path'] . $this->_remotePathFormat(preg_replace('%(.*)/([^/]*)%i','\1',$file)),
+                'RemotePath' => GitPHP::config('filezilla.remote-path') . $this->_remotePathFormat(preg_replace('%(.*)/([^/]*)%i','\1',$file)),
                 #'Download' => 0,
                 'Size' => 0,
                 'TransferMode' => 0,
