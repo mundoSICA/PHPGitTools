@@ -4,16 +4,17 @@ Por el momento estamos trabajando, tenemos algunas dudas respecto al como debera
 
 ##Estructura actual:
 	.
-	|-- docs
-	|-- hooks
+	|-- run.php <-- arrancador
+	|-- docs <-- documentacion
+	|-- hooks <-- lista de ganchos disponibles
 	|   `-- empty
-	|-- lib
-	|   |-- GitPHP.php
-	|   `-- services
-	|       |-- Email.php
-	|       |-- Ftp.php
-	|       |-- FillezillaQueue.php
-	|       `-- Service.php
+	|-- lib <-- librerias
+	|   |-- GitPHP.php <-- nucleo
+	|   `-- services <-- servicios agregados
+	|       |-- Email.php <-- Soporte para email
+	|       |-- Ftp.php <-- soporte para FTP
+	|       |-- FillezillaQueue.php <--Manejo de la cola de archivos del Filezilla.
+	|       `-- Service.php <-- Nucleo Libreria de Servicios
 	`-- README.md
 
 ##Documentacion pendiente.
@@ -33,6 +34,10 @@ Por el momento estamos trabajando, tenemos algunas dudas respecto al como debera
 ###Ejemplo2. Notificaciones por correo electronico.
 
 Ejemplo de sessiones con `smtp` desde el servidor de **gmail**
+
+###Ejemplo3. Autogenerador de documentacion.
+
+Generando automaticamente la documentación de un proyecto con git.
 
 
 #Desarrolladores.
