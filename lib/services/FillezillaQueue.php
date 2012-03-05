@@ -46,8 +46,8 @@ class FillezillaQueue extends Service{
 	 * @access publico/privado
 	 * @link [URL de mayor infor]
 	 */
-	function __construct() {
-		parent::__construct();
+	function __construct($args = null) {
+		parent::__construct($args);
 	}
 	/* public function __get($name) {} */
 	

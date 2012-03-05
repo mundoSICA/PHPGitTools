@@ -27,16 +27,7 @@ class GitPHP {
 	#########
 	public function __construct()
 	{
-		if (!defined('OS'))
-		{
-			if( strtoupper(substr(PHP_OS, 0, 3)) == 'WIN' ){
-				define('OS','WIN');
-			}else{
-				define('OS','UNIX');
-				define('DS','/');
-			}
-		}
-		define('DS',DIRECTORY_SEPARATOR);
+		
 	}
 	/**
 	 * Descripción de la función

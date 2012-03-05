@@ -1,6 +1,6 @@
 <?php
 /*
- * FilezillaQueque - una extension de GitPHP que nos ayuda en el manejo de la cola de archivos del filezilla.
+ * gitEmail - una extension de GitPHP que nos ayuda en el envio de correos electronicos.
  * 
  * Copyright 2012 fitorec <programacion@mundosica.com>
  * 

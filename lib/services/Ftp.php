@@ -97,8 +97,8 @@ class FtpGitClient extends Service {
 	 * @access publico/privado
 	 * @link [URL de mayor infor]
 	 */
-	function __construct() {
-		parent::__construct();
+	function __construct($args) {
+		parent::__construct($args);
 		if (!extension_loaded('ftp'))
 		{
 			if (OS === 'WIN')
