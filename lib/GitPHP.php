@@ -162,4 +162,43 @@ class GitPHP {
 		$cms = sprintf("git log --pretty=format:\"%s\" -%d | tail -1",'%H',$prev_num);
 		return `$cms`;
 	}
+	
+	/**
+	 * Devuelve el valor(es) del elemento solicitado en $var_name
+	 * 
+	 * Ejemplos:
+	 * print_r( GitPHP::config('user'));
+	 * Array
+	 * (
+	 *     [user.name] => myUserName
+	 *     [user.email] => email@server.com
+	 * )
+	 * 
+	 * print_r( GitPHP::config('user.name'));
+	 * myUserName
+	 * 
+	 * @param tipo $parametro1 descripción del párametro 1.
+	 * @return tipo descripcion de lo que regresa
+	 * @access publico/privado
+	 * @link [URL de mayor infor]
+	 */
+	static function config($var_name) {
+		$variables=array();
+		preg_match_all(
+					'%^'.str_replace('.','\.',$var_name).'.*=.*$%ismU', 
+					`git config --list`,
+					$variables);
+		if(!empty($variables[0])){
+			if(count($variables[0]) == 1)
+				return preg_replace('%[^=].*=(.*)$%','\1',$variables[0][0]);
+			$variables['data']=array();
+			foreach($variables[0] as $v){
+				$new_data = explode('=',$v);
+				$variables['data'][$new_data[0]] = $new_data[1];
+			}
+			return $variables['data'];
+		}
+		return null;
+	}
 }
+
