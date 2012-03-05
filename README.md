@@ -27,16 +27,16 @@ Por el momento estamos trabajando, tenemos algunas dudas respecto al como debera
 
 ###Ejemplo1. Publicando una rama por FTP
 
-- Publicando una rama(por defecto public_html) de un proyecto al empujar cambios(push)
-- Generando un gancho (hooks).
+ - Publicando una rama(por defeto public_html) de un proyecto al empujar cambios(push)
+ - Generando un gancho (hooks).
 
 ###Ejemplo2. Notificaciones por correo electronico.
 
-Ejemplo de sessiones con `smtp` desde el servidor de **gmail**
+ - Ejemplo de sessiones con `smtp` desde el servidor de **gmail**
 
 ###Ejemplo3. Autogenerador de documentación.
 
-Generando automaticamente la documentación de un proyecto con git.
+ - Generando automaticamente la documentación de un proyecto con git.
 
 
 #Documentación para desarrolladores.
