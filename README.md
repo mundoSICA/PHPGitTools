@@ -8,10 +8,10 @@ Por el momento estamos trabajando, tenemos algunas dudas respecto al como debera
 	|-- hooks
 	|   `-- empty
 	|-- lib
-	|   |-- Ftp.php
 	|   |-- GitPHP.php
 	|   `-- services
 	|       |-- Email.php
+	|       |-- Ftp.php
 	|       |-- FillezillaQueue.php
 	|       `-- Service.php
 	`-- README.md
