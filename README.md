@@ -27,7 +27,12 @@ Por el momento estamos trabajando, tenemos algunas dudas respecto al como debera
 
 ###Ejemplo1. Publicando una rama por FTP
 
-###Ejemplo2. Notificaciones por correo electronico(ejemplo de seriones con gmail)
+- Publicando una rama(por defecto public_html) de un proyecto al empujar cambios(push)
+- Generando un gancho (hooks).
+
+###Ejemplo2. Notificaciones por correo electronico.
+
+Ejemplo de sessiones con `smtp` desde el servidor de **gmail**
 
 
 #Desarrolladores.
