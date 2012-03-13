@@ -46,4 +46,3 @@ Por el momento estamos trabajando, tenemos algunas dudas respecto al como debera
 ##Reportando errores.
 
 ##Traducciones.
-
