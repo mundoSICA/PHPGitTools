@@ -116,6 +116,7 @@ protected $_config = array(
  * @link [URL de mayor infor]
  */
 	function __construct() {
+		$this->output = new CosoleOutput();
 		if (!extension_loaded('ftp')) {
 			if (OS === 'WIN') {
 				@ dl('php_ftp.dll');
@@ -427,8 +428,10 @@ protected $_config = array(
 	}
     
     public function run($params = array() ){
-        $this->_mergeConfig($params);
-        print_r( $this->_config );
+		$files = $this->filesBetweenCommits('HEAD~5', 'HEAD');
+		print_r($files);
+        #$this->_mergeConfig($params);
+        #print_r( $this->_config );
         return false;
     }
 }

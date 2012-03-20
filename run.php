@@ -24,12 +24,16 @@ protected $_validOptions = array(
     $value = $this->camelCase($this->params[0]['value']);
     
      if( array_key_exists($paramName, $this->_validOptions) ){
-        /* insertamos la clase donde hereda los servicios y los hooks */
-        
+
+		#importamos las clases Service y Hook en caso de ser requeridas.
         if( in_array($paramName, array('service', 'hook')) )
             GitShell::import( $this->_validOptions[$paramName]. $this->camelCase($paramName) . '.php');
+		
+		#cargamos el archivo requerido
         $file = $this->_validOptions[$paramName] . $value . '.php';
         GitShell::import( $file );
+
+		#Inicilizamos la clase y corremos sus callbacks
         $className = $this->camelCase($value . ' ' . $paramName);
         echo 'Iniciando clase '. $className . "\n";
         $this->script = new $className();
@@ -45,12 +49,10 @@ protected $_validOptions = array(
             $filename = str_replace('/', DS, $filename);
           $filename =  PHPGIT_PATH . DS . $filename;
           if( file_exists( $filename )) {
-            #die( "importar: [" . $filename . "]\n" );
             include_once $filename;
           } else {
-              die( "Errror al importar: [" . $filename . "]\n" );
                $output = new CosoleOutput();
-               $output->write('<error>Error: al importar el archivo ' . $filename . '</error>');
+               $output->write('<error>Error:</error> Al importar el archivo: <warning>' . $filename .'</warning>' );
                exit( 1 );
           }
     }

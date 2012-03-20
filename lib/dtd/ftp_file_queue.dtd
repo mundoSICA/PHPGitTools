@@ -1,0 +1,20 @@
+<!ELEMENT FTPqueue (server, git, files)>
+
+<!ELEMENT server (host, port, protocol, user,password, path)>
+<!ELEMENT host (#PCDATA)>
+<!ELEMENT port (#PCDATA)>
+<!ELEMENT prototol (#PCDATA)>
+<!ELEMENT user (#PCDATA)>
+<!ELEMENT password (#PCDATA)>
+<!ELEMENT path (#PCDATA)>
+
+<!ELEMENT git (lastCommit, correntCommit, fileAnchor)>
+<!ELEMENT lastCommit (#PCDATA)>
+<!ELEMENT correntCommit (#PCDATA)>
+<!ELEMENT fileAnchor (#PCDATA)>
+
+            
+<!ELEMENT files (file*)>
+<!ATTLIST file 
+	status CDATA #REQUIRED
+	size  NMTOKENS #IMPLIED>

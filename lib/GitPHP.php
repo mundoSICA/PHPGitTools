@@ -54,6 +54,41 @@ class GitPHP
   return $files;
  }//end filesByCommit
 
+	/**
+	 * Descripción de la función
+	 *
+	 * @param tipo $parametro1 descripción del párametro 1.
+	 * @return tipo descripcion de lo que regresa
+	 * @access publico/privado
+	 * @link [URL de mayor infor]
+	 */
+	function dir() {
+		return GitPHP::exec('rev-parse --show-toplevel');
+	}
+	
+	/**
+	 * Ejecuta un comando del git con parametros $params
+	 *
+	 * @param tipo $parametro1 descripción del párametro 1.
+	 * @return tipo descripcion de lo que regresa
+	 * @access publico/privado
+	 * @link [URL de mayor infor]
+	 */
+	static public function exec($params) {
+		$cmd_result = ltrim(rtrim(`git $params`));
+		$cmd_result = explode("\n",$cmd_result);
+		$result=array();
+		foreach($cmd_result as $line){
+			$line=rtrim(ltrim($line));
+			if(strlen($line)>1)
+				$result[]=$line;
+		}
+		if( count($result) > 1 )
+			return $result;
+		if( count($result) == 1 )
+			return $result[0];
+		return null;
+	}
 /**
  * Regresa la lista de archivos que sufrieron un cambio entre hash1 y hash2
  *
@@ -65,19 +100,27 @@ class GitPHP
  */
 
  public function filesBetweenCommits($hashInit, $hashEnd) {
-  $hashes = $this->hashesBetween($hashInit, $hashEnd);
-  $files = array();
-  foreach ($hashes as $h) {
-   $newsFiles = $this->filesByCommit($h);
-   #array merge
-   foreach ($newsFiles as $newFile) {
-    if (!in_array($newFile, $files)) {
-     $files[] = $newFile;
-    }
-   }
-  }
+  $cmd  = sprintf("git diff --name-status %s %s",$hashInit, $hashEnd);
+  $files = explode("\n", `$cmd`);
+  $dir = $this->dir();
   sort($files);
-  return $files;
+  $filesBetween = Array();
+  foreach($files as $file){
+	  $sub=array();
+	  if( preg_match_all('%^([A-Z])\s*(.*)$%',$file,$sub) ){
+		if( count($sub) == 3){
+			$filesBetween[] = array(
+					'file'=>$sub[2][0],
+					'status'=>$sub[1][0]
+			);
+			$index = count($filesBetween) - 1;
+			$filesBetween[$index]['size'] = 0;
+			if( $filesBetween[$index]['status'] != 'D' )
+				$filesBetween[$index]['size'] = filesize($dir. DS . $filesBetween[$index]['file']);
+		}
+	}
+  }
+  return $filesBetween;
  }//end filesBetweenCommits
 
 /**

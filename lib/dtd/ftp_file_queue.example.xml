@@ -1,0 +1,24 @@
+<!DOCTYPE FTPqueue SYSTEM "ftp_file_queque.dtd">
+<FTPqueue>
+	<conection>
+		<server>
+			<host>nombre_servidor.com</host>
+			<port>21</port>
+            <Protocol>0</Protocol>
+            <user>fitorec</user>
+            <password>secret</password>
+            <path>path/</path>
+		</server>
+		<git>
+			<path></path>
+			<lastCommit></lastCommit>
+			<correntCommit></correntCommit>
+			<fileAnchor></fileAnchor>
+		</git>
+		<files>
+			<file status='D' size='0'>deletedFile.html</file>
+			<file status='A' size='100'>newFile.html</file>
+			<file status='M' size='235'>modifiedFile.html</file>
+		</files>
+	</conection>
+</FTPqueue>
